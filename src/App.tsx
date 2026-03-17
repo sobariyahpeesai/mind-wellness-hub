@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import LoginPage from "./pages/LoginPage";
 import StudentDashboard from "./pages/StudentDashboard";
 import PsychologistDashboard from "./pages/PsychologistDashboard";
+import ReportDashboard from "./pages/ReportDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/login" element={<LoginPage />} />
           <Route path="/student" element={<StudentDashboard />} />
           <Route path="/psychologist" element={<PsychologistDashboard />} />
+          <Route path="/psychologist/reports" element={<ReportDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

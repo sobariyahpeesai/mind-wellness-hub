@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import LoginPage from "./pages/LoginPage";
 import StudentDashboard from "./pages/StudentDashboard";
 import PsychologistDashboard from "./pages/PsychologistDashboard";
+import ReportDashboard from "./pages/ReportDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();

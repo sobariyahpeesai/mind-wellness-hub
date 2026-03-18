@@ -5,7 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import LoginPage from "./pages/LoginPage";
 import StudentDashboard from "./pages/StudentDashboard";
+import StudentAppointments from "./pages/StudentAppointments";
 import PsychologistDashboard from "./pages/PsychologistDashboard";
+import PsychologistAppointments from "./pages/PsychologistAppointments";
 import ReportDashboard from "./pages/ReportDashboard";
 import NotFound from "./pages/NotFound";
 
@@ -21,7 +23,9 @@ const App = () => (
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/student" element={<StudentDashboard />} />
+          <Route path="/student/appointments" element={<StudentAppointments />} />
           <Route path="/psychologist" element={<PsychologistDashboard />} />
+          <Route path="/psychologist/appointments" element={<PsychologistAppointments />} />
           <Route path="/psychologist/reports" element={<ReportDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

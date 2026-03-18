@@ -5,7 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import LoginPage from "./pages/LoginPage";
 import StudentDashboard from "./pages/StudentDashboard";
+import StudentAppointments from "./pages/StudentAppointments";
 import PsychologistDashboard from "./pages/PsychologistDashboard";
+import PsychologistAppointments from "./pages/PsychologistAppointments";
 import ReportDashboard from "./pages/ReportDashboard";
 import NotFound from "./pages/NotFound";
 

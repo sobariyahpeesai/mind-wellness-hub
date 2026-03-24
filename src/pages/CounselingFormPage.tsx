@@ -25,9 +25,10 @@ import {
   type CounselingRecord,
 } from "@/lib/mock-student-data";
 import { toast } from "sonner";
+import { exportToPDF, exportToExcel } from "@/lib/export-counseling";
 import {
   Search, FileText, Save, FileDown, PenTool, Clock,
-  CalendarDays, User, ChevronDown, ChevronUp, ClipboardList
+  CalendarDays, User, ChevronDown, ChevronUp, ClipboardList, FileSpreadsheet
 } from "lucide-react";
 
 export default function CounselingFormPage() {

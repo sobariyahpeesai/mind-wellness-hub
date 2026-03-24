@@ -104,47 +104,33 @@ export default function CounselingFormPage() {
     toast.success("บันทึกข้อมูลการให้คำปรึกษาเรียบร้อยแล้ว");
   };
 
-  const handleExport = () => {
-    if (!selectedStudent) return;
-    // Generate a simple text export (mock e-docs)
-    const content = [
-      "แบบบันทึกการให้คำปรึกษาทางจิตวิทยา",
-      "มหาวิทยาลัยสงขลานครินทร์",
-      "═".repeat(50),
-      `ครั้งที่: ${sessionNumber}`,
-      `วันที่: ${date}`,
-      `เวลา: ${startTime} - ${endTime}`,
-      "",
-      `ชื่อ-สกุล: ${selectedStudent.namePrefix}${selectedStudent.fullName}`,
-      `รหัสนักศึกษา: ${selectedStudent.studentId}`,
-      `คณะ: ${selectedStudent.faculty}`,
-      `ภาควิชา: ${selectedStudent.department}`,
-      `ชั้นปี: ${selectedStudent.yearLevel}`,
-      "",
-      `รูปแบบการให้บริการ: ${serviceType}`,
-      `อาการสำคัญ: ${chiefComplaint === "อื่นๆ" ? customComplaint : chiefComplaint}`,
-      `ลักษณะทั่วไป (ทางกาย): ${generalAppearance}`,
-      `พฤติกรรมระหว่างการให้คำปรึกษา: ${behavior}`,
-      `สรุปการให้คำปรึกษา: ${summary}`,
-      `แผนการบำบัด/ครั้งถัดไป: ${treatmentPlan}`,
-      `สถานะเคส: ${caseStatus}`,
-      "",
-      selectedStudent.dassScores
-        ? `คะแนน DASS-21: ซึมเศร้า=${selectedStudent.dassScores.depression} วิตกกังวล=${selectedStudent.dassScores.anxiety} เครียด=${selectedStudent.dassScores.stress}`
-        : "คะแนน DASS-21: ยังไม่มีผลประเมิน",
-      "",
-      "ลงชื่อ ผู้ให้คำปรึกษา: อ.สุภาพร จิตดี",
-      `วันที่บันทึก: ${new Date().toLocaleDateString("th-TH")}`,
-    ].join("\n");
+  const getExportData = () => ({
+    student: selectedStudent!,
+    sessionNumber,
+    date,
+    startTime,
+    endTime,
+    serviceType,
+    chiefComplaint: chiefComplaint === "อื่นๆ" ? customComplaint : chiefComplaint,
+    generalAppearance,
+    behavior,
+    summary,
+    treatmentPlan,
+    caseStatus,
+    psychologistName: "อ.สุภาพร จิตดี",
+    signatureDataUrl: signatureData,
+  });
 
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `counseling-record-${selectedStudent.studentId}-${sessionNumber}.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success("ส่งออกเอกสารสำเร็จ");
+  const handleExportPDF = () => {
+    if (!selectedStudent) return;
+    exportToPDF(getExportData());
+    toast.success("ส่งออก PDF สำเร็จ");
+  };
+
+  const handleExportExcel = () => {
+    if (!selectedStudent) return;
+    exportToExcel(getExportData());
+    toast.success("ส่งออก Excel สำเร็จ");
   };
 
   return (
@@ -442,8 +428,11 @@ export default function CounselingFormPage() {
                   <Button onClick={handleSave} className="bg-primary hover:bg-primary-hover text-primary-foreground rounded-xl h-11 flex-1">
                     <Save className="w-4 h-4 mr-2" /> บันทึกข้อมูลการให้คำปรึกษา
                   </Button>
-                  <Button variant="outline" onClick={handleExport} className="rounded-xl h-11 border-primary/30 text-primary">
-                    <FileDown className="w-4 h-4 mr-2" /> ส่งออกเอกสาร e-docs
+                  <Button variant="outline" onClick={handleExportPDF} className="rounded-xl h-11 border-primary/30 text-primary">
+                    <FileDown className="w-4 h-4 mr-2" /> ส่งออก PDF
+                  </Button>
+                  <Button variant="outline" onClick={handleExportExcel} className="rounded-xl h-11 border-green-600/30 text-green-700 hover:bg-green-50">
+                    <FileSpreadsheet className="w-4 h-4 mr-2" /> ส่งออก Excel
                   </Button>
                 </div>
               </CardContent>

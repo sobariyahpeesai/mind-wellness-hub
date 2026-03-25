@@ -10,6 +10,10 @@ import PsychologistDashboard from "./pages/PsychologistDashboard";
 import PsychologistAppointments from "./pages/PsychologistAppointments";
 import ReportDashboard from "./pages/ReportDashboard";
 import CounselingFormPage from "./pages/CounselingFormPage";
+import CounselingRecordsPage from "./pages/CounselingRecordsPage";
+import NotificationsPage from "./pages/NotificationsPage";
+import ActivitiesListPage from "./pages/ActivitiesListPage";
+import ActivityDetailPage from "./pages/ActivityDetailPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +33,11 @@ const App = () => (
           <Route path="/psychologist/appointments" element={<PsychologistAppointments />} />
           <Route path="/psychologist/reports" element={<ReportDashboard />} />
           <Route path="/psychologist/counseling" element={<CounselingFormPage />} />
+          <Route path="/psychologist/counseling/records" element={<CounselingRecordsPage />} />
+          <Route path="/psychologist/notifications" element={<NotificationsPage role="psychologist" />} />
+          <Route path="/student/notifications" element={<NotificationsPage role="student" />} />
+          <Route path="/student/activities" element={<ActivitiesListPage />} />
+          <Route path="/student/activities/:id" element={<ActivityDetailPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

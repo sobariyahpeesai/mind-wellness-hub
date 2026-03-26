@@ -11,6 +11,7 @@ import PsychologistAppointments from "./pages/PsychologistAppointments";
 import ReportDashboard from "./pages/ReportDashboard";
 import CounselingFormPage from "./pages/CounselingFormPage";
 import CounselingRecordsPage from "./pages/CounselingRecordsPage";
+import ArticleManagementPage from "./pages/ArticleManagementPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import ActivitiesListPage from "./pages/ActivitiesListPage";
 import ActivityDetailPage from "./pages/ActivityDetailPage";
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/psychologist/reports" element={<ReportDashboard />} />
           <Route path="/psychologist/counseling" element={<CounselingFormPage />} />
           <Route path="/psychologist/counseling/records" element={<CounselingRecordsPage />} />
+          <Route path="/psychologist/articles" element={<ArticleManagementPage />} />
           <Route path="/psychologist/notifications" element={<NotificationsPage role="psychologist" />} />
           <Route path="/student/notifications" element={<NotificationsPage role="student" />} />
           <Route path="/student/activities" element={<ActivitiesListPage />} />

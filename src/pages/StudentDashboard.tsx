@@ -9,6 +9,7 @@ import NotificationBanner from "@/components/student/NotificationBanner";
 import DassScoreCard from "@/components/student/DassScoreCard";
 import AppointmentBookingCard from "@/components/student/AppointmentBookingCard";
 import ArticlesCard from "@/components/student/ArticlesCard";
+import { getPublishedArticlesForLevel } from "@/lib/mock-article-data";
 import ActivitiesCard from "@/components/student/ActivitiesCard";
 import ContactSidebar from "@/components/student/ContactSidebar";
 
@@ -25,15 +26,12 @@ const mockActivities = [
   { id: 3, title: "โยคะเพื่อสุขภาพจิต", date: "1 เม.ย. 2569", location: "สนามหญ้าหน้าตึก" },
 ];
 
-const mockArticles = [
-  { id: 1, title: "5 วิธีจัดการความเครียดด้วยตัวเอง", category: "Self Care" },
-  { id: 2, title: "เทคนิคการหายใจเพื่อลดความวิตกกังวล", category: "วิตกกังวล" },
-];
 
 export default function StudentDashboard() {
   const [notifyConsent, setNotifyConsent] = useState(false);
   const hasScores = mockScores !== null;
   const overallLevel: SeverityLevel = mockScores ? getOverallSeverity(mockScores) : "normal";
+  const recommendedArticles = getPublishedArticlesForLevel(overallLevel);
 
   return (
     <AppLayout
@@ -73,7 +71,7 @@ export default function StudentDashboard() {
 
             {/* Self-care Articles */}
             {hasScores && overallLevel !== "severe" && overallLevel !== "very-severe" && (
-              <ArticlesCard articles={mockArticles} />
+              <ArticlesCard articles={recommendedArticles} />
             )}
 
             <ActivitiesCard activities={mockActivities} />
